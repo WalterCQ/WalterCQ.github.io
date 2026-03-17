@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walter's Terminal Resume</title>
+    <style>
+        /* 核心重置与背景 */
+        body {
+            background-color: #0d1117;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+            color: #c9d1d9;
+        }
+
+        /* 终端窗口外壳 */
+        .terminal-window {
+            width: 85%;
+            max-width: 900px;
+            height: 85vh;
+            background-color: #161b22;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 0 1px #30363d;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 顶部控制栏 */
+        .terminal-header {
+            background-color: #21262d;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #30363d;
+        }
+
+        .buttons { display: flex; gap: 8px; }
+        .button { width: 12px; height: 12px; border-radius: 50%; }
+        .close { background-color: #ff5f56; }
+        .minimize { background-color: #ffbd2e; }
+        .maximize { background-color: #27c93f; }
+
+        .title {
+            color: #8b949e;
+            margin: 0 auto;
+            font-size: 13px;
+            transform: translateX(-24px);
+        }
+
+        /* 终端内容区 */
+        .terminal-body {
+            padding: 24px;
+            overflow-y: auto;
+            flex-grow: 1;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* 命令行提示符 */
+        .prompt-line {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .user { color: #79c0ff; font-weight: bold; }
+        .machine { color: #a5d6ff; }
+        .path { color: #d2a8ff; font-weight: bold; }
+        .symbol { color: #8b949e; margin-right: 8px;}
+        .command { color: #3fb950; font-weight: bold; }
+
+        /* YAML 语法高亮配色 */
+        pre { margin: 0; white-space: pre-wrap; word-wrap: break-word; font-family: inherit; }
+        .yaml-key { color: #ff7b72; font-weight: bold; }
+        .yaml-string { color: #a5d6ff; }
+        .yaml-dash { color: #d2a8ff; font-weight: bold; }
+
+        /* 光标闪烁动画 */
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: #c9d1d9;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* 滚动条美化 */
+        .terminal-body::-webkit-scrollbar { width: 8px; }
+        .terminal-body::-webkit-scrollbar-track { background: transparent; }
+        .terminal-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<div class="terminal-window">
+    <div class="terminal-header">
+        <div class="buttons">
+            <div class="button close"></div>
+            <div class="button minimize"></div>
+            <div class="button maximize"></div>
+        </div>
+        <div class="title">walter@claude-vm: ~/portfolio</div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+        <div class="prompt-line">
+            <span class="user">walter</span><span class="machine">@claude-vm</span><span class="symbol">:</span><span class="path">~/portfolio</span><span class="symbol">$</span>
+            <span class="command" id="typewriter"></span><span class="cursor" id="cursor"></span>
+        </div>
+        <div id="output" style="display: none;"></div>
+    </div>
+</div>
+
+<script>
+    // 完整的 YAML 简历数据
+    const resumeData = `---
+# 👤 PROFILE
+candidate:
+  name: "Liu Zhenyu"
+  title: "Software Engineer | AI & Full-Stack Developer"
+  contact:
+    github: "github.com/WalterCQ"
+    email: "liuzhenyu200407@gmail.com"
+  bio: >
+    A disciplined developer bridging full-stack engineering and AI model training. 
+    Deeply influenced by strength training and Taoist philosophy, I bring a balance of 
+    physical endurance and independent, grounded thinking to complex technical challenges.
+
+# 🔬 WORK EXPERIENCE
+experience:
+  - company: "Magic Byte"
+    role: "Software Engineer"
+    timeline: "2025.08 - Present"
+    highlights:
+      - "Independently architected and developed the official company website, web client, and admin dashboard for 'Zhima Network' (知马网) utilizing Vue 3."
+  
+  - company: "China Telecom (Chongqing IDC)"
+    role: "IDC Operations Intern"
+    timeline: "2025.08 - 2025.09"
+    highlights:
+      - "Participated in the operation and maintenance of the Internet Data Center, gaining hands-on exposure to enterprise-level server infrastructure and network stability."
+
+# 🚀 FEATURED PROJECTS
+projects:
+  - name: "Project Nidie (104M Custom LLM)"
+    type: "AI Research & Development"
+    tech_stack: ["Python", "PyTorch", "LoRA", "RLHF"]
+    description: >
+      Trained a 104M parameter language model from scratch. Handled the end-to-end pipeline 
+      including pre-training, knowledge distillation, reinforcement learning, and reasoning optimization. 
+      Successfully trained an anthropomorphic, tone-modifying LoRA based on the core model.
+
+  - name: "DS Math"
+    type: "AI-Powered EdTech Software"
+    tech_stack: ["Electron", "React", "TypeScript", "Vite", "TailwindCSS", "Zustand", "SQLite", "SiliconFlow API"]
+    description: >
+      Independently developed and deployed a desktop application that generates real-time 
+      math teaching animations for primary school students using code-based AI agents.
+
+  - name: "ASL Recognition System"
+    type: "Coursework (SOF106 - AI Principles)"
+    tech_stack: ["Python", "CNN", "Computer Vision"]
+    description: >
+      Core contributor in developing a Convolutional Neural Network (CNN) designed for 
+      accurate American Sign Language (ASL) gesture recognition.
+
+  - name: "MyTour Travel Blog"
+    type: "Full-Stack Web App"
+    tech_stack: ["Java", "Spring Boot", "MySQL"]
+    description: "Developed and successfully deployed a full-stack travel blogging platform. Fully open-sourced on GitHub."
+
+# 💻 TECH STACK & SKILLS
+skills:
+  programming_languages:
+    proficient: ["Python", "Vue 3"]
+    familiar: ["JavaScript", "TypeScript"]
+    basic: ["C++", "C#", "Rust"]
+  tools_and_frameworks: 
+    - "Cursor"
+    - "Antigravity"
+    - "React"
+    - "Electron"
+  hardware_and_llm_ops:
+    - "Deep understanding of consumer hardware performance bottlenecks."
+    - "Experienced in local LLM deployment, inference optimization (e.g., quantization), and allocating computing resources."
+
+# 🎓 EDUCATION
+education:
+  - institution: "Xiamen University Malaysia (XMUM)"
+    degree: "Bachelor of Engineering in Software Engineering"
+    timeline: "Expected Aug 2027"
+    gpa: "3.25 / 4.00"
+
+# 🤝 EXTRACURRICULAR
+extracurricular:
+  - "Active Member, Programming Club"
+  - "Active Member, Fitness Club"
+---`;
+
+    // 语法高亮（带光标）
+    function highlightYAML(text) {
+        return text
+            .replace(/^( *)([\w_]+):/gm, '$1<span class="yaml-key">$2</span>:') 
+            .replace(/"(.*?)"/g, '"<span class="yaml-string">$1</span>"') 
+            .replace(/^( *)- /gm, '$1<span class="yaml-dash">-</span> '); 
+    }
+
+    const commandText = "cat resume.yaml";
+    const typewriterEl = document.getElementById("typewriter");
+    const outputEl = document.getElementById("output");
+    const cursor = document.getElementById("cursor");
+    let i = 0;
+    let j = 0;
+
+    function typeWriter() {
+        if (i < commandText.length) {
+            typewriterEl.innerHTML += commandText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 80); 
+        } else {
+            // 命令输入完成后，开始流式输出内容
+            setTimeout(() => {
+                cursor.style.display = 'none'; 
+                outputEl.style.display = 'block';
+                
+                // 先设置基础结构
+                outputEl.innerHTML = '<pre id="stream-content"></pre><span class="cursor" id="stream-cursor"></span>';
+                
+                const streamContent = document.getElementById("stream-content");
+                const streamCursor = document.getElementById("stream-cursor");
+                
+                // 流式输出函数
+                function streamOutput() {
+                    if (j < resumeData.length) {
+                        // 获取当前字符
+                        const char = resumeData.charAt(j);
+                        
+                        // 处理特殊字符
+                        let displayChar = char;
+                        if (char === '<') displayChar = '&lt;';
+                        else if (char === '>') displayChar = '&gt;';
+                        
+                        // 追加内容并高亮
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = streamContent.innerHTML + displayChar;
+                        streamContent.innerHTML = highlightYAML(tempDiv.textContent);
+                        
+                        j++;
+                        
+                        // 根据内容调整速度，模拟人类思考节奏
+                        const delay = char === '\n' ? 15 : 
+                                     char === '-' || char === ':' ? 20 :
+                                     Math.random() > 0.95 ? 30 : 5;
+                        
+                        setTimeout(streamOutput, delay);
+                    } else {
+                        // 输出完成
+                        streamCursor.style.display = 'none';
+                        
+                        // 追加新提示符
+                        outputEl.innerHTML += `
+                            <div class="prompt-line" style="margin-top: 16px;">
+                                <span class="user">walter</span><span class="machine">@claude-vm</span><span class="symbol">:</span><span class="path">~/portfolio</span><span class="symbol">$</span>
+                                <span class="cursor"></span>
+                            </div>
+                        `;
+                        
+                        // 自动滚动到底部
+                        const terminalBody = document.getElementById('terminal-body');
+                        terminalBody.scrollTop = terminalBody.scrollHeight;
+                    }
+                }
+                
+                streamOutput();
+                
+            }, 400);
+        }
+    }
+
+    window.onload = () => setTimeout(typeWriter, 500);
+</script>
+
+</body>
+</html>
