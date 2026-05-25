@@ -2,6 +2,10 @@
 
 Static GitHub Pages portfolio rendered as a terminal-style resume.
 
+## Screenshot
+
+![Portfolio page](docs/screenshots/home.jpg)
+
 ## Files
 
 - `index.html`: complete page, styles, and typewriter resume data
