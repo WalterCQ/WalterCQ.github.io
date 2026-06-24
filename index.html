@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walter's Terminal Resume</title>
+    <title>Liu Zhenyu Terminal Resume</title>
     <style>
         /* 核心重置与背景 */
         body {
@@ -107,11 +107,11 @@
             <div class="button minimize"></div>
             <div class="button maximize"></div>
         </div>
-        <div class="title">walter@claude-vm: ~/portfolio</div>
+        <div class="title">walter@github-pages: ~/resume</div>
     </div>
     <div class="terminal-body" id="terminal-body">
         <div class="prompt-line">
-            <span class="user">walter</span><span class="machine">@claude-vm</span><span class="symbol">:</span><span class="path">~/portfolio</span><span class="symbol">$</span>
+            <span class="user">walter</span><span class="machine">@github-pages</span><span class="symbol">:</span><span class="path">~/resume</span><span class="symbol">$</span>
             <span class="command" id="typewriter"></span><span class="cursor" id="cursor"></span>
         </div>
         <div id="output" style="display: none;"></div>
@@ -121,95 +121,171 @@
 <script>
     // 完整的 YAML 简历数据
     const resumeData = `---
-# 👤 PROFILE
+# PROFILE
 candidate:
   name: "Liu Zhenyu"
-  title: "Software Engineer | AI & Full-Stack Developer"
+  title: "AI Software Engineer Intern / LLM Application Engineer Intern"
+  location: "Selangor, Malaysia"
   contact:
-    github: "github.com/WalterCQ"
     email: "liuzhenyu200407@gmail.com"
-  bio: >
-    A disciplined developer bridging full-stack engineering and AI model training. 
-    Deeply influenced by strength training and Taoist philosophy, I bring a balance of 
-    physical endurance and independent, grounded thinking to complex technical challenges.
+    phone: "+60 147192810"
+    github: "github.com/WalterCQ"
+    linkedin: "linkedin.com/in/zhenyu-liu-2352ab392"
+    website: "waltercq.github.io"
+  summary: >
+    Software engineering undergraduate with hands-on React/Electron, ASP.NET Core backend,
+    and LLM workflow experience. Built an n8n/Ollama/ComfyUI workflow control panel and
+    a Semantic Kernel AI command backend, with focus on reliable tool calling, API
+    integration, and product delivery.
 
-# 🔬 WORK EXPERIENCE
-experience:
-  - company: "Magic Byte"
-    role: "Software Engineer"
-    timeline: "2025.08 - Present"
-    highlights:
-      - "Independently architected and developed the official company website, web client, and admin dashboard for 'Zhima Network' (知马网) utilizing Vue 3."
-  
-  - company: "China Telecom (Chongqing IDC)"
-    role: "IDC Operations Intern"
-    timeline: "2025.08 - 2025.09"
-    highlights:
-      - "Participated in the operation and maintenance of the Internet Data Center, gaining hands-on exposure to enterprise-level server infrastructure and network stability."
-
-# 🚀 FEATURED PROJECTS
-projects:
-  - name: "Project Nidie (104M Custom LLM)"
-    type: "AI Research & Development"
-    tech_stack: ["Python", "PyTorch", "LoRA", "RLHF"]
-    description: >
-      Trained a 104M parameter language model from scratch. Handled the end-to-end pipeline 
-      including pre-training, knowledge distillation, reinforcement learning, and reasoning optimization. 
-      Successfully trained an anthropomorphic, tone-modifying LoRA based on the core model.
-
-  - name: "DS Math"
-    type: "AI-Powered EdTech Software"
-    tech_stack: ["Electron", "React", "TypeScript", "Vite", "TailwindCSS", "Zustand", "SQLite", "SiliconFlow API"]
-    description: >
-      Independently developed and deployed a desktop application that generates real-time 
-      math teaching animations for primary school students using code-based AI agents.
-
-  - name: "ASL Recognition System"
-    type: "Coursework (SOF106 - AI Principles)"
-    tech_stack: ["Python", "CNN", "Computer Vision"]
-    description: >
-      Core contributor in developing a Convolutional Neural Network (CNN) designed for 
-      accurate American Sign Language (ASL) gesture recognition.
-
-  - name: "MyTour Travel Blog"
-    type: "Full-Stack Web App"
-    tech_stack: ["Java", "Spring Boot", "MySQL"]
-    description: "Developed and successfully deployed a full-stack travel blogging platform. Fully open-sourced on GitHub."
-
-# 💻 TECH STACK & SKILLS
+# SKILLS
 skills:
-  programming_languages:
-    proficient: ["Python", "Vue 3"]
-    familiar: ["JavaScript", "TypeScript"]
-    basic: ["C++", "C#", "Rust"]
-  tools_and_frameworks: 
-    - "Cursor"
-    - "Antigravity"
+  ai_llm:
+    - "n8n"
+    - "Ollama"
+    - "ComfyUI"
+    - "Semantic Kernel"
+    - "OpenAI-compatible APIs"
+    - "Agentic workflow"
+    - "Tool/function calling"
+    - "QLoRA/QPiSSA/PEFT research"
+    - "PyTorch basics"
+    - "CNN basics"
+  backend:
+    - "ASP.NET Core Web API"
+    - "Spring Boot"
+    - "Flask"
+    - "Express"
+    - "REST API"
+    - "SignalR"
+    - "EF Core"
+    - "Spring Data JPA"
+  frontend:
     - "React"
+    - "Vue 3"
     - "Electron"
-  hardware_and_llm_ops:
-    - "Deep understanding of consumer hardware performance bottlenecks."
-    - "Experienced in local LLM deployment, inference optimization (e.g., quantization), and allocating computing resources."
+    - "Flutter"
+    - "Next.js"
+    - "Vite"
+    - "Tailwind CSS"
+    - "Pinia"
+    - "Zustand"
+  languages: ["TypeScript", "JavaScript", "Python", "Java", "C#", "Dart", "SQL"]
+  database: ["MySQL", "SQL Server", "SQLite", "T-SQL"]
+  tools_platform:
+    - "Git"
+    - "GitHub Actions"
+    - "Docker"
+    - "Postman"
+    - "Maven"
+    - ".NET CLI"
+    - "Electron Builder"
+    - "Linux server basics"
 
-# 🎓 EDUCATION
+# EXPERIENCE
+experience:
+  - company: "MAGICBYTE TECHNOLOGIES SDN. BHD."
+    role: "Software Engineer Intern"
+    timeline: "Aug 2025 - Apr 2026"
+    location: "Malaysia"
+    highlights:
+      - "Contributed to the design and development of a Car Rental Management System, building website/client UI and connecting frontend pages with REST APIs."
+      - "Used Postman, MySQL, and Git to support backend management module testing and investigate issues across API and UI flows."
+
+  - company: "China Telecom Chongqing IDC"
+    role: "Technical Support Engineer Intern"
+    timeline: "Aug 2025 - Sep 2025"
+    location: "Chongqing, China"
+    highlights:
+      - "Supported Linux servers, IDC operations, basic network/server configuration, troubleshooting, and fault investigation."
+      - "Completed assigned operations tasks and received an excellent-performance evaluation in the internship certificate."
+
+# PROJECTS
+projects:
+  - name: "Agentic AI Workflow Management App"
+    year: "2026"
+    tech_stack:
+      - "Electron"
+      - "React"
+      - "TypeScript"
+      - "Vite"
+      - "Tailwind CSS"
+      - "Zustand"
+      - "n8n"
+      - "Ollama"
+      - "ComfyUI"
+    link: "github.com/WalterCQ/G1137-agentic-AI-and-workflow-automation-for-everyone"
+    highlights:
+      - "Built a desktop control panel for monitoring and managing n8n-based AI workflows."
+      - "Implemented local n8n connection settings, workflow status views, execution history, and bilingual UI."
+
+  - name: "TaskFlow Connect Backend"
+    year: "2026"
+    tech_stack:
+      - "ASP.NET Core"
+      - "C#"
+      - "EF Core"
+      - "SQL Server"
+      - "SignalR"
+      - "Semantic Kernel"
+      - "Docker"
+    link: "taskflow-connect-06221341-feb9.azurewebsites.net/swagger/index.html"
+    repo: "Private repo available upon request"
+    highlights:
+      - "Implemented collaboration backend REST APIs for workspaces, channels, messages, projects, tasks, and notifications."
+      - "Built SignalR real-time hubs, EF Core models/services, Docker/SQL Server setup, and hosted Swagger documentation."
+
+  - name: "FYP - QPiSSA-Enhanced Qwen Adaptation for Manglish E-Commerce Customer Service Agents"
+    status: "2026 Research Proposal"
+    tech_stack:
+      - "LLM Fine-tuning"
+      - "QLoRA"
+      - "QPiSSA"
+      - "PEFT"
+      - "Qwen"
+      - "Tool/function calling"
+    artifact: "Proposal PDF available upon request"
+    highlights:
+      - "Designed a research proposal for QPiSSA-enhanced Qwen adaptation for Manglish e-commerce customer-service agents, with DeepSeek as baseline."
+      - "Defined automatic metrics and human evaluation for low-resource code-switching, intent/slot understanding, and structured tool-call outputs."
+
+# EDUCATION
 education:
-  - institution: "Xiamen University Malaysia (XMUM)"
-    degree: "Bachelor of Engineering in Software Engineering"
-    timeline: "Expected Aug 2027"
-    gpa: "3.25 / 4.00"
+  - institution: "Xiamen University, Malaysia Campus"
+    degree: "Bachelor of Software Engineering"
+    timeline: "Sep 2023 - Aug 2027"
+    location: "Malaysia Campus"
+    coursework:
+      - "Data Structures"
+      - "Algorithm Analysis and Design"
+      - "Database"
+      - "Operating Systems"
+      - "Cloud Computing"
+      - "Information Security"
+      - "Software Architecture and Design Patterns"
+      - "Software Verification and Validation"
+      - "Agentic AI and Workflow Automation"
+    note: "Degree awarded by Xiamen University"
 
-# 🤝 EXTRACURRICULAR
-extracurricular:
-  - "Active Member, Programming Club"
-  - "Active Member, Fitness Club"
+# AWARDS
+awards:
+  - title: "Silver Prize, China International College Students Innovation Competition"
+    date: "Oct 2024"
 ---`;
 
     // 语法高亮（带光标）
-    function highlightYAML(text) {
+    function escapeHTML(text) {
         return text
-            .replace(/^( *)([\w_]+):/gm, '$1<span class="yaml-key">$2</span>:') 
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+    }
+
+    function highlightYAML(text) {
+        return escapeHTML(text)
             .replace(/"(.*?)"/g, '"<span class="yaml-string">$1</span>"') 
-            .replace(/^( *)- /gm, '$1<span class="yaml-dash">-</span> '); 
+            .replace(/^( *)([\w_]+):/gm, '$1<span class="yaml-key">$2</span>:')
+            .replace(/^( *)- /gm, '$1<span class="yaml-dash">-</span> ');
     }
 
     const commandText = "cat resume.yaml";
@@ -235,22 +311,14 @@ extracurricular:
                 
                 const streamContent = document.getElementById("stream-content");
                 const streamCursor = document.getElementById("stream-cursor");
+                let renderedText = '';
                 
                 // 流式输出函数
                 function streamOutput() {
                     if (j < resumeData.length) {
-                        // 获取当前字符
                         const char = resumeData.charAt(j);
-                        
-                        // 处理特殊字符
-                        let displayChar = char;
-                        if (char === '<') displayChar = '&lt;';
-                        else if (char === '>') displayChar = '&gt;';
-                        
-                        // 追加内容并高亮
-                        const tempDiv = document.createElement('div');
-                        tempDiv.innerHTML = streamContent.innerHTML + displayChar;
-                        streamContent.innerHTML = highlightYAML(tempDiv.textContent);
+                        renderedText += char;
+                        streamContent.innerHTML = highlightYAML(renderedText);
                         
                         j++;
                         
@@ -267,7 +335,7 @@ extracurricular:
                         // 追加新提示符
                         outputEl.innerHTML += `
                             <div class="prompt-line" style="margin-top: 16px;">
-                                <span class="user">walter</span><span class="machine">@claude-vm</span><span class="symbol">:</span><span class="path">~/portfolio</span><span class="symbol">$</span>
+                                <span class="user">walter</span><span class="machine">@github-pages</span><span class="symbol">:</span><span class="path">~/resume</span><span class="symbol">$</span>
                                 <span class="cursor"></span>
                             </div>
                         `;
